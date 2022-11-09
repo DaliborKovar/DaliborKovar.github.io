@@ -49,13 +49,24 @@
 	}
   });
 
-const firstEventName = 'firstEvent'
-const firstEventProps = {
-	type: 'idontknow',
-	revenue: 50,
-}
+let eventProps = []
 
-smartlook('track', firstEventName, firstEventProps)
+for (let i = 1; i != 8; i++) {
+    eventProps.push({
+        type: `usd-${i}0`,
+        revenue: i * 10
+    })
+
+const [ event1, event2, event3, event4, event5, event6, event7, event8 ] = eventProps
+
+smartlook('track', event1.type, event1)
+smartlook('track', event2.type, event2)
+smartlook('track', event3.type, event3)
+smartlook('track', event4.type, event4)
+smartlook('track', event5.type, event5)
+smartlook('track', event6.type, event6)
+smartlook('track', event7.type, event7)
+smartlook('track', event8.type, event8)
 			
 </script>
 	</head>
