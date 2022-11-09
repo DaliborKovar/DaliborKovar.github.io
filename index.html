@@ -70,12 +70,6 @@ smartlook('track', event7.type, event7)
 smartlook('track', event8.type, event8)
 
 */
-
-const btn = document.getElementById('usd-30')
-
-btn.addEventListener('click', () => {
-    smartlook('track', 'Test')
-})
 			
 </script>
 	</head>
@@ -104,6 +98,14 @@ btn.addEventListener('click', () => {
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+            <script>
+                const btn = document.getElementById('usd-30')
+                btn.addEventListener('click', () => {
+		    console.log('Click funguje')
+                    smartlook('track', 'Test')
+                })
+            </script>
 
 	</body>
+
 </html>
