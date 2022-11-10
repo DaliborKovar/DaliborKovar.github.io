@@ -47,30 +47,7 @@
 			ip: true,
 		}
 	}
-  });
-
-/*let eventProps = []
-
-for (let i = 1; i != 9; i++) {
-    eventProps.push({
-        type: `usd-${i}0`,
-        revenue: i * 10
-    })
-}
-
-const [ event1, event2, event3, event4, event5, event6, event7, event8 ] = eventProps
-
-smartlook('track', event1.type, event1)
-smartlook('track', event2.type, event2)
-smartlook('track', event3.type, event3)
-smartlook('track', event4.type, event4)
-smartlook('track', event5.type, event5)
-smartlook('track', event6.type, event6)
-smartlook('track', event7.type, event7)
-smartlook('track', event8.type, event8)
-
-*/
-			
+  });		
 </script>
 	</head>
 	<body class="is-preload">
@@ -79,16 +56,19 @@ smartlook('track', event8.type, event8)
 				    </div>
 					<div class="content">
 						<div style="margin-bottom: 20px;">
-						    <button class="button" data-recording-click-props='{"key1":"usd-10"}'>10 usd</button>
-						    <button class="button">20 usd</button>
-						    <button class="button" id="usd-30">30 usd</button>
-						    <button class="button" id="usd-40">40 usd</button>
+						    <button class="button" class="revenue-button">10 usd</button>
+						    <button class="button" class="revenue-button">20 usd</button>
+						    <button class="button" class="revenue-button">30 usd</button>
+						    <button class="button" class="revenue-button">40 usd</button>
 						</div>
 						<div>
-						    <button class="button" id="usd-50">50 usd</button>
-						    <button class="button" id="usd-60">60 usd</button>
-						    <button class="button" id="usd-70">70 usd</button>
-						    <button class="button" id="usd-80">80 usd</button>
+						    <button class="button" class="revenue-button">50 usd</button>
+						    <button class="button" class="revenue-button">60 usd</button>
+						    <button class="button" class="revenue-button">70 usd</button>
+						    <button class="button" class="revenue-button">80 usd</button>
+						</div>
+                        <div style="margin-bottom: 20px;">
+						    <button class="button">Non revenue button</button>
 						</div>
 				    </div>
 		<!-- Scripts -->
@@ -99,14 +79,18 @@ smartlook('track', event8.type, event8)
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
             <script>
-                const btn = document.getElementById('usd-30')
-                btn.addEventListener('click', () => {
-		    console.log('Click funguje')
-		    const neco = {
-			    type: 'Tjetotenhleevent',
-			    revenue: 50,
-		    }
-                    smartlook('track', 'Tjetotenhleevent', neco)
+                const revenueBtns = document.querySelectorAll('.revenue-button')
+                revenueBtns.forEach((btn, indx) => {
+                    const revenueValue = (indx + 1) * 10
+                    const eventName = `usd ${revenueValue}`
+                    const revenueProps = {
+                        type: 'revenueButton',
+                        revenue: revenueValue,
+                    }
+
+                    btn.addEventListener('click', () => {
+                        smartlook('track', eventName, revenueProps)
+                    })
                 })
             </script>
 
