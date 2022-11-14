@@ -49,11 +49,6 @@
 	}
   });
 		</script>
-                <style>
-                    .clicked {
-                        backgroun
-                    }
-                </style>
 	</head>
 	<body class="is-preload">
                     <div class="content">
@@ -75,11 +70,13 @@
 						    <button value='70' class="button revenue-button">70 usd</button>
 						    <button value='80' class="button revenue-button">80 usd</button>
 						</div>
-                        <div>
+                        <div style="margin-bottom: 20px;">
 						    <button class="button" id="finish">Finish order</button>
+                            <p>Will send custom event with the total order value</p>
 						</div>
                         <div>
 						    <button class="button" id="clear">Reset total</button>
+                            <p>Will reset the order value</p>
 						</div>
 				    </div>
 		<!-- Scripts -->
@@ -106,20 +103,16 @@
                     btn.addEventListener('click', (event) => {
                         smartlook('track', eventName, revenueProps)
                         total += Number(event.target.value)
-                        console.log(btn.classList)
-                        btn.classList.toggle("clicked")
                         totalVal.textContent = total
-                        console.log(total)
                     })
                 })
 
                 const clearFn = () => {
                     revenueBtns.forEach((btn) => {
-                    btn.classList.toggle("clicked")
                     total = 0
                     totalVal.textContent = total
-                })
-	}
+                    })
+                }
 
                 finishOrder.addEventListener('click', () => {
                     const revenueVal = total
