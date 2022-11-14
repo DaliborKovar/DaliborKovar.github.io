@@ -101,8 +101,9 @@
                     btn.addEventListener('click', (event) => {
                         smartlook('track', eventName, revenueProps)
                         total += event.target.value
+                        console.log(btn.classList)
                         btn.classList.add('clicked')
-                        totalVal.innerHTML = total
+                        totalVal.textContent = total
                         console.log(total)
                     })
                 })
@@ -118,6 +119,8 @@
                 }
 
                 finishOrder.addEventListener('click', () => {
+                    console.log('finish runs')
+
                     const revenueVal = total
                     const eventName = 'Finished order'
                     const revenueProps = {
@@ -131,6 +134,7 @@
                 })
 
                 clear.addEventListener('click', () => {
+                    console.log('this runs')
                     clearFn()
                 })
 
