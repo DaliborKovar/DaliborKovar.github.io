@@ -98,9 +98,9 @@
                         revenue: revenueValue,
                     }
 
-                    btn.addEventListener('click', () => {
+                    btn.addEventListener('click', (event) => {
                         smartlook('track', eventName, revenueProps)
-                        total += btn.target.value
+                        total += event.target.value
                         btn.classList.add('clicked')
                         totalVal.innerHTML = total
                         console.log(total)
@@ -108,7 +108,7 @@
                 })
 
                 const clearFn = () => {
-                    revenueBtns.forEach(() => {
+                    revenueBtns.forEach((btn) => {
                         if (btn.classList.contains('clicked')) {
                             btn.classList.remove('clicked')
                         }
