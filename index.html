@@ -49,6 +49,11 @@
 	}
   });
 		</script>
+                <style>
+                    .clicked {
+                        backgroun
+                    }
+                </style>
 	</head>
 	<body class="is-preload">
                     <div class="content">
@@ -100,7 +105,7 @@
 
                     btn.addEventListener('click', (event) => {
                         smartlook('track', eventName, revenueProps)
-                        total += event.target.value
+                        total += Number(event.target.value)
                         console.log(btn.classList)
                         btn.classList.add('clicked')
                         totalVal.textContent = total
@@ -116,6 +121,7 @@
                     })
 
                     total = 0
+                    totalVal.textContent = total
                 }
 
                 finishOrder.addEventListener('click', () => {
