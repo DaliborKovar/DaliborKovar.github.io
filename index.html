@@ -55,20 +55,26 @@
 					    <h1>It's revenue testing time :pepe_sad:</h1>
 				    </div>
 					<div class="content">
-						<div style="margin-bottom: 20px;">
-						    <button class="button revenue-button">10 usd</button>
-						    <button class="button revenue-button">20 usd</button>
-						    <button class="button revenue-button">30 usd</button>
-						    <button class="button revenue-button">40 usd</button>
+                        <div>
+						    <p>Current order value: <span id="total">0</span></p>
 						</div>
 						<div style="margin-bottom: 20px;">
-						    <button class="button revenue-button">50 usd</button>
-						    <button class="button revenue-button">60 usd</button>
-						    <button class="button revenue-button">70 usd</button>
-						    <button class="button revenue-button">80 usd</button>
+						    <button value='10' class="button revenue-button">10 usd</button>
+						    <button value='20' class="button revenue-button">20 usd</button>
+						    <button value='30' class="button revenue-button">30 usd</button>
+						    <button value='40' class="button revenue-button">40 usd</button>
+						</div>
+						<div style="margin-bottom: 20px;">
+						    <button value='50' class="button revenue-button">50 usd</button>
+						    <button value='60' class="button revenue-button">60 usd</button>
+						    <button value='70' class="button revenue-button">70 usd</button>
+						    <button value='80' class="button revenue-button">80 usd</button>
 						</div>
                         <div>
-						    <button class="button">Non revenue button</button>
+						    <button class="button" id="finish">Finish order</button>
+						</div>
+                        <div>
+						    <button class="button" id="clear">Reset total</button>
 						</div>
 				    </div>
 		<!-- Scripts -->
@@ -79,7 +85,11 @@
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
             <script>
+                let total = 0
                 const revenueBtns = document.querySelectorAll('.revenue-button')
+                const totalVal = document.getElementById('total')
+                const finishOrder = document.getElementById('finish')
+                const clear = document.getElementById('clear')
                 revenueBtns.forEach((btn, indx) => {
                     const revenueValue = (indx + 1) * 10
                     const eventName = `usd ${revenueValue}`
@@ -88,10 +98,43 @@
                         revenue: revenueValue,
                     }
 
-                    btn.addEventListener('click', () => {
+                    btn.addEventListener('click', (btn) => {
                         smartlook('track', eventName, revenueProps)
+                        total += btn.target.value
+                        btn.classList.add('clicked')
+                        totalVal.innerHTML = total
+                        console.log(total)
                     })
                 })
+
+                const clearFn = () => {
+                    revenueBtns.forEach((btn) => {
+                        if (btn.classList.contains('clicked')) {
+                            btn.classList.remove('clicked')
+                        }
+                    })
+
+                    total = 0
+                }
+
+                finishOrder.addEventListener('click', () => {
+                    const revenueVal = total
+                    const eventName = 'Finished order'
+                    const revenueProps = {
+                        type: 'finishOrder',
+                        revenue: revenueVal,
+                    }
+
+                    smartlook('track', eventName, revenueProps)
+
+                    clearButtons()
+                })
+
+                clear.addEventListener('click', () => {
+                    clearFn()
+                })
+
+
             </script>
 
 	</body>
